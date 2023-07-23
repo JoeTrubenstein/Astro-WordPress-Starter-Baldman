@@ -1,9 +1,11 @@
 --- 
+import '../global.css'
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+import Header from '../components/Header.astro'
 ---
 
 <!DOCTYPE html>
@@ -15,22 +17,11 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<!-- This line needs to be present for the theme toggle to work -->
+		<script is:inline src="/toggle-theme.js"></script>
 	</head>
 	<body>
+		<Header />
 		<slot />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
