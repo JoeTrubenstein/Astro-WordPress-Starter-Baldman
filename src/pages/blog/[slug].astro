@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { wpquery } from "../../api/wordpress";
+import { wpquery } from "../../graphql/wordpress";
 
 export async function getStaticPaths() {
   const data = await wpquery({
