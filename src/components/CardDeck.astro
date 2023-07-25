@@ -1,103 +1,105 @@
 ---
-import { wpquery } from '../api/wordpress';
+import { wpquery } from "../api/wordpress";
+import type { Post } from "../api/graphql";
 
 const data = await wpquery({
   query: `
-{
+  {
   posts(where: {tag: "demo"}) {
     nodes {
-                    date
-                    uri
-                    title
-                    slug
-                    author {
-                      node {
-                        name
-                      }
-                    }
-                    commentCount
-                    excerpt
-                    categories {
-                      nodes {
-                        name
-                        uri
-                      }
-                    }
-                    featuredImage {
-                      node {
-                        srcSet
-                        sourceUrl
-                        altText
-                        mediaDetails {
-                          height
-                          width
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+      date
+      uri
+      title
+      slug
+      author {
+        node {
+          name
+        }
+      }
+      commentCount
+      excerpt
+      categories {
+        nodes {
+          name
+          uri
+        }
+      }
+      featuredImage {
+        node {
+          srcSet
+          sourceUrl
+          altText
+          mediaDetails {
+            height
+            width
+          }
+        }
+      }
+    }
+  }
+}
   `,
 });
 ---
-
-<section class=" dark:bg-gray-900">
-    <div class="py-8 mx-auto max-w-screen-xl lg:py-16">
-
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-            {
-                data.posts.nodes.map((post: any) => {
-                    return (
-
+<section class="dark:bg-gray-900">
+  <div class="py-8 mx-auto max-w-screen-xl lg:py-16">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        data.posts.nodes.map((post: Post) => {
+          return (
             <article class="rounded-lg border border-skin-line p-6 shadow-md">
-                <div class="flex justify-between items-center mb-5">
-                    <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded">
-                        {post.categories.nodes[0].name}
-                    </span>
-                    <span><time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time></span>
-                </div>
-
-                <img 
+              <div class="flex justify-between items-center mb-5">
+                <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded">
+                  {post.categories?.nodes[0].name}
+                </span>
+                <span>
+                  <time datetime={post.date}>{post.date?.split("T")[0]}</time>
+                </span>
+              </div>
+              <img
                 class="mb-2"
-                src={post?.featuredImage?.node?.mediaItemUrl} 
-                alt={post?.featuredImage?.node?.altText}
-                srcset={post?.featuredImage?.node?.srcSet}
-                loading='lazy'
-                width={post?.featuredImage?.node?.mediaDetails?.width}
-                height={post?.featuredImage?.node?.mediaDetails?.height}
-            >
-
-            <div class="overflow-hidden sm:h-48 lg:mb-4">
-            <h2 class="mb-2 text-xl font-bold tracking-tight text-skin-accent">
-              <a href={`/blog/${post.slug}`}>{post.title}</a>
-            </h2>
-   
-
-          <p set:html={post.excerpt} class="mb-5 text-skin-soft"></p>
-        </div>
-
-
-
-                <div class="flex justify-between items-center pt-4">
-
-                    <div class="flex items-center space-x-4">
-                        <span class="font-medium dark:text-white">
-                            {post.author.node.name}
-                        </span>
-                    </div>
-                    <a href="#" class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
-                        Read more
-                        <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </a>
+                src={post.featuredImage?.node?.mediaItemUrl}
+                alt={post.featuredImage?.node?.altText}
+                srcset={post.featuredImage?.node?.srcSet}
+                loading="lazy"
+                width={post.featuredImage?.node?.mediaDetails?.width}
+                height={post.featuredImage?.node?.mediaDetails?.height}
+              />
+              <div class="overflow-hidden sm:h-48 lg:mb-4">
+                <h2 class="mb-2 text-xl font-bold tracking-tight text-skin-accent">
+                  <a href={`/blog/${post.slug}`}>{post.title}</a>
+                </h2>
+                <p set:html={post.excerpt} class="mb-5 text-skin-soft" />
+              </div>
+              <div class="flex justify-between items-center pt-4">
+                <div class="flex items-center space-x-4">
+                  <span class="font-medium dark:text-white">
+                    {post.author?.node.name}
+                  </span>
                 </div>
-
-            </div>
-        </article> 
-            )
+                <a
+                  href="#"
+                  class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
+                >
+                  Read more
+                  <svg
+                    class="ml-2 w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          );
         })
-    }
-
-        </div>  
-
-  </section>
+      }
+    </div>
+  </div>
+</section>
