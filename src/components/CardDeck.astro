@@ -57,13 +57,10 @@ const data = await wpquery({
                 </span>
               </div>
               <img
-                class="mb-2"
+                class="mb-2 w-full h-72 object-cover"
                 src={post.featuredImage?.node?.mediaItemUrl}
                 alt={post.featuredImage?.node?.altText}
                 srcset={post.featuredImage?.node?.srcSet}
-                loading="lazy"
-                width={post.featuredImage?.node?.mediaDetails?.width}
-                height={post.featuredImage?.node?.mediaDetails?.height}
               />
               <div class="overflow-hidden sm:h-48 lg:mb-4">
                 <h2 class="mb-2 text-xl font-bold tracking-tight text-skin-accent">
