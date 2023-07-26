@@ -57,12 +57,12 @@ const data = await wpquery({
                 </span>
               </div>
               <img
-                class="mb-2 w-full h-56 lg:h-48 object-cover object-top"
+                class="mb-2 w-full h-48 lg:h-32 object-cover object-top"
                 src={post.featuredImage?.node?.mediaItemUrl}
                 alt={post.featuredImage?.node?.altText}
                 srcset={post.featuredImage?.node?.srcSet}
               />
-              <div class="overflow-hidden sm:h-48 lg:mb-4">
+              <div class="overflow-hidden sm:h-42 lg:mb-4">
                 <h2 class="mb-2 text-xl font-bold tracking-tight text-skin-accent">
                   <a href={`/blog/${post.slug}`}>{post.title}</a>
                 </h2>
@@ -100,4 +100,3 @@ const data = await wpquery({
     </div>
   </div>
 </section>
-../graphql/wordpress../graphql/graphql
