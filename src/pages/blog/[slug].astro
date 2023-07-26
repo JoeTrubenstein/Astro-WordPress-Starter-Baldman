@@ -42,7 +42,7 @@ const { post } = Astro.props;
 ---
 
 <Layout title="An Example Blog Post">
-  <section class="py-12 lg:p4-6 prose prose-img:w-full">
+  <section class="py-6 prose prose-img:w-full prose-img:aspect-video prose-img:object-cover">
     <img
       src={post.featuredImage.node.mediaItemUrl}
       srcset={post.featuredImage.node.srcSet}
