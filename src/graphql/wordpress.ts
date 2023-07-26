@@ -8,7 +8,7 @@ export async function wpquery({ query, variables = {} }: WPGraphQLParams) {
     method: "post",
     headers: {
       "Content-Type": "application/json",
-      "Authorization" : "Basic dXNlcjpLTktFIGN6UkcgTENrUCA2TWZoIFc0VWMgVzJNTQ=="
+      "Authorization" : import.meta.env.WORDPRESS_API_PASSWORD
 
     },
     body: JSON.stringify({
