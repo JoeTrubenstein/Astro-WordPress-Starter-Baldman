@@ -8,8 +8,8 @@
     --color-fill: 255, 255, 255;
     --color-text-base: 15, 24, 42;
     --color-text-soft: 51, 65, 85;
-    --color-accent: 80, 70, 228;
-    --color-card: 15, 24, 42;
+    --color-accent: 98, 0, 239;
+    --color-card: 255, 255, 255;
     --color-card-muted: 51, 65, 85;
     --color-border: 226, 233, 240;
     --color-white: 255, 255, 255;
@@ -17,12 +17,12 @@
     --color-slate: 15, 24, 42;
   }
   html[data-theme="dark"] {
-    --color-fill: 15, 24, 42;
+    --color-fill: 18, 18, 18;
     --color-text-base: 230, 230, 230;
-    --color-accent: 129, 140, 248;
-    --color-card: 63, 75, 90;
+    --color-accent: 187, 134, 253;
+    --color-card: 30, 30, 30;
     --color-card-muted: 89, 107, 129;
-    --color-border: 51, 65, 85;
+    --color-border: 81, 81, 81;
     --color-white: 255, 255, 255;
     --color-text-soft: 148, 163, 184;
   }
@@ -41,7 +41,7 @@
   }
 
   body {
-    @apply flex min-h-screen w-screen flex-col bg-skin-fill font-mono text-skin-base 
+    @apply flex min-h-screen w-screen flex-col bg-skin-fill font-sans text-skin-base 
     selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
   }
   section,

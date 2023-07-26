@@ -41,13 +41,14 @@ const data = await wpquery({
   `,
 });
 ---
+
 <section class="dark:bg-gray-900">
   <div class="py-8 mx-auto max-w-screen-xl lg:py-16">
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {
         data.posts.nodes.map((post: Post) => {
           return (
-            <article class="rounded-lg border border-skin-line p-6 shadow-md">
+            <article class="rounded-lg border border-skin-line p-6 shadow-md bg-skin-card">
               <div class="flex justify-between items-center mb-5">
                 <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center py-0.5 rounded">
                   {post.categories?.nodes[0].name}

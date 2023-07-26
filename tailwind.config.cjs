@@ -65,7 +65,7 @@ module.exports = {
     },
     fontFamily: {
       mono: ["Roboto Mono Variable", "monospace"],
-      sans: ["ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont"],
+      sans: ["Raleway Variable, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont"],
     },
     // },
   },
