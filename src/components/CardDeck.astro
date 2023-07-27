@@ -57,11 +57,13 @@ const data = await wpquery({
                   <time datetime={post.date}>{post.date?.split("T")[0]}</time>
                 </span>
               </div>
+
               <img
                 class="mb-2 w-full aspect-video object-cover object-top"
                 src={post.featuredImage?.node?.sourceUrl}
                 alt={post.featuredImage?.node?.altText}
               />
+              
               <div class="overflow-hidden sm:h-42 lg:mb-4">
                 <h2 class="mb-2 text-xl font-bold tracking-tight text-skin-accent">
                   <a href={`/blog/${post.slug}`}>{post.title}</a>
