@@ -1,16 +1,27 @@
-import type { CodegenConfig } from "@graphql-codegen/cli";
+// codegen.ts
+import type { CodegenConfig } from '@graphql-codegen/cli';
+import 'dotenv/config'
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: "https://commandline.cafe/graphql",
+  schema: [
+    {
+      // replace with your own WordpPress GraphQL endpoint
+      'https://commandline.cafe/graphql': {
+        headers: {
+          Authorization: import.meta.env.WORDPRESS_API_PASSWORD
+        },
+      },
+    },
+  ],
   generates: {
-    "src/api/graphql.ts": {
-      plugins: ["typescript"],
+    "src/graphql/schematypes.ts": {
+      plugins: ["typescript"]
     },
-    "./graphql.schema.json": {
-      plugins: ["introspection"],
-    },
-  },
+    "src/graphql/schema.json": {
+      plugins: ["introspection"]
+    }
+  }
 };
 
 export default config;
