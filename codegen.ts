@@ -7,7 +7,7 @@ const config: CodegenConfig = {
   schema: [
     {
       // replace with your own WordpPress GraphQL endpoint
-      'https://commandline.cafe/graphql': {
+      'https://{my-awesome-wordpress-site}/graphql': {
         headers: {
           Authorization: import.meta.env.WORDPRESS_API_PASSWORD
         },
